@@ -79,6 +79,13 @@ function start1 () {
         if (minutes === 1 && seconds === 30) {
             colorFirst()
         }
+
+        if (minutes === 0 && seconds === 0) {
+            firstTimer.innerHTML = `${minutes}:${seconds}`
+            clearInterval(ourTimer); 
+            
+
+        }
         
         firstTimer.innerHTML = `${minutes}:${seconds}`
         }, 1000); 
@@ -128,6 +135,12 @@ function start2 () {
         console.log(minutes, seconds)
         if (minutes === 1 && seconds === 30) {
             colorSecond()
+        }
+
+        if (minutes === 0 && seconds === 0) {
+            secondTimer.innerHTML = `${minutes}:${seconds}`
+            clearInterval(ourSecondTimer);
+
         }
         
         secondTimer.innerHTML = `${minutes}:${seconds}`
