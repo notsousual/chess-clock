@@ -1,8 +1,12 @@
 let firstTimer = document.getElementById('first_timer')
 let secondTimer =  document.getElementById('second_timer')
 
-let firstClock = document.getElementById('clock_1')
-let secondClock =  document.getElementById('clock_2')
+let firstTimerMask = document.getElementById('first_timer_mask')
+let secondTimerMask =  document.getElementById('second_timer_mask')
+
+
+const firstClock = document.getElementById('clock_1')
+const secondClock =  document.getElementById('clock_2')
 
 let pauseButton = document.getElementById('pause-btn')
 let tenButton = document.getElementById('ten-btn')
@@ -14,30 +18,43 @@ let time = 600
 let firstArray = [600]
 let secondArray = [600]
 
-fiveButton.onclick =  function() {
+
+fiveButton.addEventListener('click', function () {
     time = 300
     firstArray = [300]
     secondArray = [300]
-    firstTimer.innerHTML = '05:00'
-    secondTimer.innerHTML = '05:00'
-}
+ 
+    firstTimerMask.innerText = '05:00'
+    secondTimerMask.innerHTML = '05:00'
+
+    // firstTimerMask.style.display = 'flex'
+    // firstTimer.style.display = 'none' 
+
+    // secondTimerMask.style.display = 'flex'
+    // secondTimer.style.display = 'none' 
+
+})
+
+
 
 tenButton.onclick = function() {
     time = 600
     firstArray = [600]
     secondArray = [600]
-    firstTimer.innerHTML = '10:00'
-    secondTimer.innerHTML = '10:00'
+    // firstTimer.innerHTML = '10:00'
+    // secondTimer.innerHTML = '10:00'
 }
 
 thirtyButton.onclick = function() {
     time = 30
     firstArray = [30]
     secondArray = [30]
-    firstTimer.innerHTML = '00:30'
-    secondTimer.innerHTML = '00:30'
+    // firstTimer.innerHTML = '00:30'
+    // secondTimer.innerHTML = '00:30'
 }
 
+
+console.log('!!!!!', time, firstArray, secondArray)
 
 function colorFirst() {
     firstClock.style.backgroundColor= 'rgb(199, 101, 92)'
@@ -48,6 +65,10 @@ function colorSecond() {
 }
 
 function start1 () {
+
+    
+
+    
 
     window.removeEventListener('keydown', start1)
     window.addEventListener('keydown', function handler() {
@@ -73,6 +94,8 @@ function start1 () {
         firstArray.unshift(time)
         let minutes = Math.floor(time / 60);
         let seconds = time - minutes * 60;
+
+        console.log(minutes)
         
         console.log(minutes, seconds, firstArray)
 
@@ -88,10 +111,21 @@ function start1 () {
         }
         
         firstTimer.innerHTML = `${minutes}:${seconds}`
+        // firstTimerMask.style.display = 'none'
+        // firstTimer.style.display = 'flex'
+
+        // secondTimerMask.style.display = 'none'
+        // secondTimer.style.display = 'flex'
         }, 1000); 
 
+       
+
+
+        
+    // firstTimer.innerHTML = `${minutes}:${seconds}`
 
     
+
     // pauseButton.addEventListener ('click', function pause() {
 
     //     clearInterval(ourTimer); 
@@ -158,6 +192,8 @@ function start2 () {
         // }
 
         }, 1000);    
+
+        secondTimer.innerHTML = `${minutes}:${seconds}`
 
 }
 
