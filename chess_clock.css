@@ -148,3 +148,22 @@ h4 {
   color: rgb(90, 71, 65);
 
 }
+
+#kredz {
+  position: fixed;
+  bottom:0;
+  right: 0;
+  color: white;
+  opacity: 0.5;
+  font-size: 10px;
+  margin-right: 10px;
+
+}
+a {
+  color: white;
+}
+/* #second_timer {
+  display: none;
+  
+} */
+
