@@ -9,6 +9,8 @@ body {
   text-align: center;
   font-family: 'Roboto Mono';
   color: rgb(62, 55, 55);
+
+
 }
 
 h1 {
@@ -18,17 +20,18 @@ h1 {
 
 h2 {
   margin: 10px;
-  font-size: 7vh;
+  font-size: 4vw;
 }
 
 h4 {
   margin: 10px;
-  font-size: 4vh;
+  font-size: 2vw;
 }
 
 
 #bod {
   position: relative;
+  
   z-index: -2;
   text-align: center;
   color:white;
@@ -36,8 +39,10 @@ h4 {
   background: repeating-linear-gradient( -45deg, #444cf7, #444cf7 5px, rgb(32, 53, 81) 5px, rgb(32, 53, 81) 40px );
   padding: 0;
   margin: 0;
+
   height: 100vh;
   width: 100vw;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -49,6 +54,7 @@ h4 {
 
 
 #box {
+ 
   width: 600px;
   background: rgb(56, 40, 34);
   display: flex;
@@ -57,6 +63,7 @@ h4 {
   padding: 50px 0;
   border-radius: 10px;
   box-shadow: -10px 10px  #1b1b1b;
+  transition: 0.2;
 }
 
 .clock_buttons {
@@ -72,6 +79,7 @@ h4 {
 
 
 .clock_button {
+  
   position:relative;
   z-index: -1;
   width: 60px;
@@ -97,11 +105,12 @@ h4 {
 
 
 .clock {
+
   position:relative;
   z-index: 0;
   box-shadow: -10px 10px  #1b1b1b;
   background-color: rgb(198, 192, 190);
-  height: 150px;
+
   height: 120px;
   width: 200px;
   margin: 15px auto; 
@@ -128,7 +137,7 @@ h4 {
 
 
 .btn, .ten-btn {
-  font-size: 4vh;
+  font-size: 2vh;
   font-family: 'Roboto Mono';
   font-weight: bold;
   color: rgb(56, 40, 34);
@@ -162,8 +171,49 @@ h4 {
 a {
   color: white;
 }
-/* #second_timer {
-  display: none;
+.unhide {
+  display:none;
+}
+
+@media screen and (min-width: 100px) and (max-width: 800px) {
+  #box {
+    
+    width: 80vw;
+  }
+
+  .construction {
+    margin-top: 15vh;
+  }
+
+  .clock {
+    
+    margin: 10px auto;
+    height: 10vh;
+    width: 30vw;
+  }
+
+  h1 {
+    font-size: 4vh;
+  }
+
+  h2 {
+    margin: 10px;
+    font-size: 4vh;
+  }
   
-} */
+  h4 {
+    margin: 10px;
+    font-size: 2vh;
+  }
+  .unhide {
+    display:inherit;
+  }
+  
+
+
+  
+
+
+
+}
 

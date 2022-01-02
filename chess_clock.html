@@ -1,0 +1,84 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Chess clock</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+
+    <link href='https://fonts.googleapis.com/css?family=Questrial|Open Sans|Roboto Mono' rel='stylesheet'> 
+    <link href='chess_clock.css' rel='stylesheet'>
+    <script defer src="chess_clock.js"></script>
+
+  </head>
+  <body>
+
+    <div id='kredz'>
+        <p>С любовью к шахматам, <a href="https://github.com/notsousual/chess-clock">github</a> 2022</p>
+
+    </div>
+
+    <div id='ribbon'>
+        <h2>Chess Clock</h2>
+        <h4>Press any key to start/switch clocks ticking</h4>
+        <h4 class='unhide'>(works on desktops only)</h4>
+
+        <form  class="controls">
+            <!-- <button id='pause-btn' class ="btn" type="button">Pause</button> -->
+
+            <h4>Choose time: </h4>
+
+            <button id='ten-btn' class ="btn" type="button">10 min</button>
+            <button id='five-btn' class ="btn" type="button">5 min</button>
+            <button id='thirty-btn' class ="btn" type="button">30sec(test)</button>
+        </form>
+        
+        
+
+    </div>
+
+    <div id='bod'>
+        
+        
+
+        <div class='construction'>
+
+        
+
+            <div class='clock_buttons'>
+                <div class='clock_button' id='first_clock_button'>
+                    
+
+                </div>
+
+                <div class='clock_button' id='second_clock_button'>
+
+                </div>
+
+            </div>
+
+
+            <div class='wow'>
+            </div>
+
+            <div id='box'>
+                <div class='clock' id='clock_1' >
+
+                    <h1 id="first_timer"> 10:00</h1>
+
+                </div>
+
+                <div class='clock' id='clock_2' >
+
+                    <h1 id="second_timer"> 10:00</h1>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+  </body>
+</html>
