@@ -13,6 +13,7 @@ let tenButton = document.getElementById('ten-btn')
 let fiveButton = document.getElementById('five-btn')
 let thirtyButton = document.getElementById('thirty-btn')
 
+let clickableElem = document.getElementById('bod')
 
 function playSound() {
   const audio = new Audio("lighter.wav");
@@ -21,30 +22,29 @@ function playSound() {
 
 window.addEventListener('keydown',  function handler() {
 
-  
-
   console.log('wwooooop')
-  // window.removeEventListener('keydown', handler())
+  
   window.addEventListener('keydown', function () {
     check_list[0] = true
     playSound()
   })
   playSound()
-  accurateTimer(100,first_period,function (){},function (){});
+  accurateTimer(100, first_period, function (){}, function (){});
 
 }, {once : true} )
 
-document.getElementById('bod').addEventListener('click',  function () {
+clickableElem.addEventListener('click',  function () {
   
-  console.log('wwjjjjjj')
+  console.log('clickableElem')
+  playSound()
+  check_list[0] = false
+  
+  accurateTimer(100, first_period, function (){}, function (){});
 
-  window.addEventListener('click', function () {
+  clickableElem.addEventListener('click', function () {
     check_list[0] = true
     playSound()
   })
-
-  playSound()
-  accurateTimer(100, first_period,function (){},function (){});
 
 }, {once : true} )
 
@@ -159,7 +159,7 @@ function accurateTimer(timer, max, repeatArgument, callbackArgument){
           firstTimer.innerHTML = `${minutes}:${seconds}`
           
           accurateTimer2(100,second_period,function (){},function (){});
-          console.log('ghbdtn')
+          console.log('switch to second')
           return
 
         }
@@ -210,6 +210,8 @@ function accurateTimer2(timer, max, repeatArgument, callbackArgument) {
             clearTimeout()
             check_list[0] = false
             second_counter +=1
+
+            console.log('switch to first')
             
             accurateTimer(100,
               first_period,
