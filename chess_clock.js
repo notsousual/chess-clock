@@ -106,6 +106,13 @@ function winSecond() {
   secondClock.style.backgroundColor= 'rgb(123, 209, 84)'
 }
 
+function makeBackgroundBlack() {
+  clickableElem.style.background = 'repeating-linear-gradient( -45deg, #ececec, #ececec 5px, rgb(46, 46, 46) 5px, rgb(46, 46, 46) 40px)'
+}
+
+function makeBackgroundWhite() {
+  clickableElem.style.background = 'repeating-linear-gradient( -45deg, rgb(88, 88, 88), rgb(88, 88, 88) 5px, rgb(180, 180, 180) 5px, rgb(180, 180, 180) 40px)'
+}
 
 console.log('perfomance', performance.now())
 
@@ -127,6 +134,8 @@ let first_period = 6000
 let second_period = 6000
 
 function accurateTimer(timer, max, repeatArgument, callbackArgument){
+
+  makeBackgroundWhite()
 
   let minutes = Math.floor(first_period / 600);
   let seconds = Math.floor(first_period / 10) - minutes *60
@@ -185,6 +194,9 @@ init(timer);
 
 
 function accurateTimer2(timer, max, repeatArgument, callbackArgument) {
+
+  makeBackgroundBlack()
+
   let minutes = Math.floor(second_period / 600);
   let seconds = Math.floor(second_period / 10) - minutes * 60
 
@@ -201,7 +213,7 @@ function accurateTimer2(timer, max, repeatArgument, callbackArgument) {
 
         minutes = Math.floor(second_period / 600);
         seconds = Math.floor(second_period / 10) - minutes *60
-        
+
         if (minutes === 1 && seconds === 30) {
           colorSecond()
         }
