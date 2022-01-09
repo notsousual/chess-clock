@@ -12,7 +12,12 @@ let pauseButton = document.getElementById('pause-btn')
 let tenButton = document.getElementById('ten-btn')
 let fiveButton = document.getElementById('five-btn')
 let thirtyButton = document.getElementById('thirty-btn')
-console.log('working')
+
+
+function playSound() {
+  const audio = new Audio("lighter.wav");
+  audio.play();
+}
 
 window.addEventListener('keydown',  function handler() {
 
@@ -22,13 +27,10 @@ window.addEventListener('keydown',  function handler() {
   // window.removeEventListener('keydown', handler())
   window.addEventListener('keydown', function () {
     check_list[0] = true
+    playSound()
   })
-  accurateTimer(100,
-    first_period,
-    function test(){},
-    function test2(){});
-    
-  
+  playSound()
+  accurateTimer(100,first_period,function (){},function (){});
 
 }, {once : true} )
 
@@ -38,11 +40,12 @@ document.getElementById('bod').addEventListener('click',  function () {
 
   window.addEventListener('click', function () {
     check_list[0] = true
+    playSound()
   })
-  accurateTimer(100,
-    first_period,
-    function test(){},
-    function test2(){});
+
+  playSound()
+  accurateTimer(100, first_period,function (){},function (){});
+
 }, {once : true} )
 
 
@@ -114,14 +117,14 @@ console.log('perfomance', performance.now())
 //Lastly we have a param for a function which will be called at every period 
 //and a callback function for the last period.
 
-var origin = new Date().getTime();
+let origin = new Date().getTime();
 
-var initial = 6000
-var check_list = [false]
-var first_counter = 1;
-var second_counter = 1;
-var first_period = 6000
-var second_period = 6000
+let initial = 6000
+let check_list = [false]
+let first_counter = 1;
+let second_counter = 1;
+let first_period = 6000
+let second_period = 6000
 
 function accurateTimer(timer, max, repeatArgument, callbackArgument){
 
@@ -129,19 +132,15 @@ function accurateTimer(timer, max, repeatArgument, callbackArgument){
   let seconds = Math.floor(first_period / 10) - minutes *60
 
   firstTimer.innerHTML = `${minutes}:${seconds}`
-  
 
-  var init = (t) => {
+  let init = (t) => {
+
     let timeStart = new Date().getTime();
-    
 
     setTimeout(function () {
+
       if (first_period > 0) {
         let fix = (new Date().getTime() - timeStart) - timer;
-        // return
-        
-        // let seconds = first_counter - minutes * 60;
-
 
         minutes = Math.floor(first_period / 600);
         seconds = Math.floor(first_period / 10) - minutes *60
@@ -149,7 +148,9 @@ function accurateTimer(timer, max, repeatArgument, callbackArgument){
         if (minutes === 1 && seconds === 30) {
           colorFirst()
         }
+
         if (check_list[0]) {
+
           clearTimeout()
           check_list[0] = false
           first_counter +=1
@@ -157,32 +158,24 @@ function accurateTimer(timer, max, repeatArgument, callbackArgument){
 
           firstTimer.innerHTML = `${minutes}:${seconds}`
           
-          accurateTimer2(100,
-            second_period,
-            function test(){},
-            function test2(){});
+          accurateTimer2(100,second_period,function (){},function (){});
+          console.log('ghbdtn')
+          return
 
-            console.log('ghbdtn')
-            
-            return
-          }
+        }
           
-
         init(t - fix);
         first_counter += 1;
         first_period -= 1 
-        
+
         console.log(first_counter, first_period, t - fix)
       
       // event to be repeated max times
         repeatArgument();
         firstTimer.innerHTML = `${minutes}:${seconds}`
-        
       } else {
       // event to be executed at animation end
-        
         winSecond()
-      
         return;
       }
     }, t);
@@ -197,11 +190,13 @@ function accurateTimer2(timer, max, repeatArgument, callbackArgument) {
 
   secondTimer.innerHTML = `${minutes}:${seconds}`
   
+  let init = (t) => {
 
-  var init = (t) => {
-    let timeStart = new Date().getTime();
+    let timeStart = new Date().getTime()
+
     setTimeout(function () {
       if (second_period > 0) {
+
         let fix = (new Date().getTime() - timeStart) - timer;
 
         minutes = Math.floor(second_period / 600);
@@ -220,37 +215,24 @@ function accurateTimer2(timer, max, repeatArgument, callbackArgument) {
               first_period,
               function test(){},
               function test2(){});
-
-              
-          
-            console.log('ghbdtn')
             return
           }
 
-        
-        
-        
-
+      
         init(t - fix);
         second_counter += 1; 
         second_period -= 1
-        
 
-        
         console.log(second_counter, 'max', max,  'second', second_period,  t - fix)
       
       // event to be repeated max times
-
         secondTimer.innerHTML = `${minutes}:${seconds}`
         repeatArgument();
-
-      
-        
       } else {
       // event to be executed at animation end
+
         winFirst()
         return;
-        
       }
     }, t);
   }
@@ -258,15 +240,3 @@ init(timer);
 }
 
 
-//example
-// accurateTimer(1000,
-//      20,
-//      function test(){console.log(new Date().getTime())},
-//      function test2(){console.log(new Date().getTime() - origin);}
-//      );
-
-
-// accurateTimer(100,
-//     3000,
-//     function test(){},
-//     function test2(){});
