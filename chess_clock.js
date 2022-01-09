@@ -33,9 +33,17 @@ window.addEventListener('keydown',  function handler() {
 }, {once : true} )
 
 document.getElementById('bod').addEventListener('click',  function () {
-  check_list[0] = true
+  
   console.log('wwjjjjjj')
-})
+
+  window.addEventListener('click', function () {
+    check_list[0] = true
+  })
+  accurateTimer(100,
+    first_period,
+    function test(){},
+    function test2(){});
+}, {once : true} )
 
 
 function fiveHandler() {
@@ -85,6 +93,14 @@ function colorFirst() {
 
 function colorSecond() {
     secondClock.style.backgroundColor= 'rgb(199, 101, 92)'
+}
+
+function winFirst() {
+  firstClock.style.backgroundColor= 'rgb(123, 209, 84)'
+}
+
+function winSecond() {
+  secondClock.style.backgroundColor= 'rgb(123, 209, 84)'
 }
 
 
@@ -164,7 +180,10 @@ function accurateTimer(timer, max, repeatArgument, callbackArgument){
         
       } else {
       // event to be executed at animation end
-        callbackArgument();
+        
+        winSecond()
+      
+        return;
       }
     }, t);
   }
@@ -229,7 +248,8 @@ function accurateTimer2(timer, max, repeatArgument, callbackArgument) {
         
       } else {
       // event to be executed at animation end
-        callbackArgument();
+        winFirst()
+        return;
         
       }
     }, t);
