@@ -14,47 +14,70 @@ let fiveButton = document.getElementById('five-btn')
 let thirtyButton = document.getElementById('thirty-btn')
 console.log('working')
 
-let time = 600
-let firstArray = [600]
-let secondArray = [600]
+window.addEventListener('keydown',  function handler() {
 
+  
 
-fiveButton.addEventListener('click', function () {
-    time = 300
-    firstArray = [300]
-    secondArray = [300]
- 
-    firstTimerMask.innerText = '05:00'
-    secondTimerMask.innerHTML = '05:00'
+  console.log('wwooooop')
+  // window.removeEventListener('keydown', handler())
+  window.addEventListener('keydown', function () {
+    check_list[0] = true
+  })
+  accurateTimer(100,
+    first_period,
+    function test(){},
+    function test2(){});
+    
+  
 
-    // firstTimerMask.style.display = 'flex'
-    // firstTimer.style.display = 'none' 
+}, {once : true} )
 
-    // secondTimerMask.style.display = 'flex'
-    // secondTimer.style.display = 'none' 
-
+document.getElementById('bod').addEventListener('click',  function () {
+  check_list[0] = true
+  console.log('wwjjjjjj')
 })
 
 
-
-tenButton.onclick = function() {
-    time = 600
-    firstArray = [600]
-    secondArray = [600]
-    // firstTimer.innerHTML = '10:00'
-    // secondTimer.innerHTML = '10:00'
+function fiveHandler() {
+  firstTimer.innerHTML = '5:0'
+  secondTimer.innerHTML = '5:0'
+  first_period = 3000
+  second_period = 3000
+  tenButton.addEventListener('click', tenHandler, {once : true})
+  thirtyButton.addEventListener('click', thirtyHandler,{once : true})
 }
 
-thirtyButton.onclick = function() {
-    time = 30
-    firstArray = [30]
-    secondArray = [30]
-    // firstTimer.innerHTML = '00:30'
-    // secondTimer.innerHTML = '00:30'
+function tenHandler() {
+  firstTimer.innerHTML = '10:0'
+  secondTimer.innerHTML = '10:0'
+  first_period = 6000
+  second_period = 6000
+  fiveButton.addEventListener('click', fiveHandler, {once : true})
+  thirtyButton.addEventListener('click', thirtyHandler,{once : true})
+  
+
 }
 
 
-console.log('!!!!!', time, firstArray, secondArray)
+function thirtyHandler() {
+  firstTimer.innerHTML = '0:30'
+  secondTimer.innerHTML = '0:30'
+  initial = 300
+  first_period = 300
+  second_period = 300
+
+  tenButton.addEventListener('click', tenHandler, {once : true})
+  fiveButton.addEventListener('click', fiveHandler, {once : true})
+
+
+}
+fiveButton.addEventListener('click', fiveHandler, {once : true})
+
+tenButton.addEventListener('click', tenHandler, {once : true})
+
+thirtyButton.addEventListener('click', thirtyHandler, {once : true})
+
+
 
 function colorFirst() {
     firstClock.style.backgroundColor= 'rgb(199, 101, 92)'
@@ -64,138 +87,166 @@ function colorSecond() {
     secondClock.style.backgroundColor= 'rgb(199, 101, 92)'
 }
 
-function start1 () {
 
+console.log('perfomance', performance.now())
+
+
+//The 'timer' parameter is how long we want the wait between each function call.
+
+// 'max' parameter is how may times we want the function to be called.
+
+//Lastly we have a param for a function which will be called at every period 
+//and a callback function for the last period.
+
+var origin = new Date().getTime();
+
+var initial = 6000
+var check_list = [false]
+var first_counter = 1;
+var second_counter = 1;
+var first_period = 6000
+var second_period = 6000
+
+function accurateTimer(timer, max, repeatArgument, callbackArgument){
+
+  let minutes = Math.floor(first_period / 600);
+  let seconds = Math.floor(first_period / 10) - minutes *60
+
+  firstTimer.innerHTML = `${minutes}:${seconds}`
+  
+
+  var init = (t) => {
+    let timeStart = new Date().getTime();
     
 
-    
-
-    window.removeEventListener('keydown', start1)
-    window.addEventListener('keydown', function handler() {
-
-        clearInterval(ourTimer);
-       
-        window.removeEventListener('keydown', handler)
-        window.addEventListener('keydown', start1)
-
-
-        start2()
-
-    })
-
-    console.log('wow1')
- 
-    let ourTimer = setInterval(function () {
-        let time = firstArray[0] 
-        time -= 1
-        // if (firstArray.length > 1) {
-        //     if (firstArray[1] - firstArray[0] 
-        // }
-        firstArray.unshift(time)
-        let minutes = Math.floor(time / 60);
-        let seconds = time - minutes * 60;
-
-        console.log(minutes)
+    setTimeout(function () {
+      if (first_period > 0) {
+        let fix = (new Date().getTime() - timeStart) - timer;
+        // return
         
-        console.log(minutes, seconds, firstArray)
+        // let seconds = first_counter - minutes * 60;
+
+
+        minutes = Math.floor(first_period / 600);
+        seconds = Math.floor(first_period / 10) - minutes *60
 
         if (minutes === 1 && seconds === 30) {
-            colorFirst()
+          colorFirst()
         }
+        if (check_list[0]) {
+          clearTimeout()
+          check_list[0] = false
+          first_counter +=1
 
-        if (minutes === 0 && seconds === 0) {
-            firstTimer.innerHTML = `${minutes}:${seconds}`
-            clearInterval(ourTimer); 
+
+          firstTimer.innerHTML = `${minutes}:${seconds}`
+          
+          accurateTimer2(100,
+            second_period,
+            function test(){},
+            function test2(){});
+
+            console.log('ghbdtn')
             
+            return
+          }
+          
 
-        }
+        init(t - fix);
+        first_counter += 1;
+        first_period -= 1 
         
+        console.log(first_counter, first_period, t - fix)
+      
+      // event to be repeated max times
+        repeatArgument();
         firstTimer.innerHTML = `${minutes}:${seconds}`
-        // firstTimerMask.style.display = 'none'
-        // firstTimer.style.display = 'flex'
-
-        // secondTimerMask.style.display = 'none'
-        // secondTimer.style.display = 'flex'
-        }, 1000); 
-
-       
-
-
         
-    // firstTimer.innerHTML = `${minutes}:${seconds}`
-
-    
-
-    // pauseButton.addEventListener ('click', function pause() {
-
-    //     clearInterval(ourTimer); 
-    //     pauseButton.removeEventListener('click', pause)
-
-    //     pauseButton.addEventListener ('click', function start_again() {
-    //         pauseButton.removeEventListener('click', start_again)
-    //         start1()
-
-
-
-    //     })
-        
-    // })
-
+      } else {
+      // event to be executed at animation end
+        callbackArgument();
+      }
+    }, t);
+  }
+init(timer);
 }
 
 
-function start2 () {
+function accurateTimer2(timer, max, repeatArgument, callbackArgument) {
+  let minutes = Math.floor(second_period / 600);
+  let seconds = Math.floor(second_period / 10) - minutes * 60
 
-    window.removeEventListener('keydown', start2)
-    window.addEventListener('keydown', function handler() {
+  secondTimer.innerHTML = `${minutes}:${seconds}`
+  
 
-        clearInterval(ourSecondTimer);
-       
-        window.removeEventListener('keydown', handler)
-        window.addEventListener('keydown', start2)
+  var init = (t) => {
+    let timeStart = new Date().getTime();
+    setTimeout(function () {
+      if (second_period > 0) {
+        let fix = (new Date().getTime() - timeStart) - timer;
 
-    })
+        minutes = Math.floor(second_period / 600);
+        seconds = Math.floor(second_period / 10) - minutes *60
 
-    
-    console.log('wow2')
-
-    let ourSecondTimer = setInterval(function () {
-        let time = secondArray[0]
-        time -= 1
-        secondArray.unshift(time)
-        let minutes = Math.floor(time / 60);
-        let seconds = time - minutes * 60;
-        
-        console.log(minutes, seconds)
         if (minutes === 1 && seconds === 30) {
-            colorSecond()
+          colorSecond()
         }
 
-        if (minutes === 0 && seconds === 0) {
-            secondTimer.innerHTML = `${minutes}:${seconds}`
-            clearInterval(ourSecondTimer);
+        if (check_list[0]) {
+            clearTimeout()
+            check_list[0] = false
+            second_counter +=1
+            
+            accurateTimer(100,
+              first_period,
+              function test(){},
+              function test2(){});
 
-        }
+              
+          
+            console.log('ghbdtn')
+            return
+          }
+
         
-        secondTimer.innerHTML = `${minutes}:${seconds}`
+        
+        
 
-        // if (minutes.length === 1 && seconds.length !== 1) {
-        //     secondTimer.innerHTML = `0${minutes}:${seconds}`
-        // } else if (seconds.length === 1 && minutes.length !== 1 ) {
-        //     secondTimer.innerHTML = `${minutes}:0${seconds}`
-        // } else if (seconds.length === 1 &&  && minutes.length === 1) {
-        //     secondTimer.innerHTML = `0${minutes}:0${seconds}`
+        init(t - fix);
+        second_counter += 1; 
+        second_period -= 1
+        
 
-        // } else {
-        //     secondTimer.innerHTML = `${minutes}:${seconds}`
-
-        // }
-
-        }, 1000);    
+        
+        console.log(second_counter, 'max', max,  'second', second_period,  t - fix)
+      
+      // event to be repeated max times
 
         secondTimer.innerHTML = `${minutes}:${seconds}`
+        repeatArgument();
 
+      
+        
+      } else {
+      // event to be executed at animation end
+        callbackArgument();
+        
+      }
+    }, t);
+  }
+init(timer);
 }
 
 
-window.addEventListener('keydown', start1)
+//example
+// accurateTimer(1000,
+//      20,
+//      function test(){console.log(new Date().getTime())},
+//      function test2(){console.log(new Date().getTime() - origin);}
+//      );
+
+
+// accurateTimer(100,
+//     3000,
+//     function test(){},
+//     function test2(){});
