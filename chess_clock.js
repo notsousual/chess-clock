@@ -38,7 +38,7 @@ clickableElem.addEventListener('click',  function () {
   console.log('clickableElem')
   playSound()
   check_list[0] = false
-  
+
   accurateTimer(100, first_period, function (){}, function (){});
 
   clickableElem.addEventListener('click', function () {
@@ -82,16 +82,16 @@ function thirtyHandler() {
 
 
 }
+
+
 fiveButton.addEventListener('click', fiveHandler, {once : true})
-
 tenButton.addEventListener('click', tenHandler, {once : true})
-
 thirtyButton.addEventListener('click', thirtyHandler, {once : true})
 
 
 
 function colorFirst() {
-    firstClock.style.backgroundColor= 'rgb(199, 101, 92)'
+    firstClock.style.backgroundColor= 'rgb(199, 101, 92)'//red
 }
 
 function colorSecond() {
@@ -99,7 +99,7 @@ function colorSecond() {
 }
 
 function winFirst() {
-  firstClock.style.backgroundColor= 'rgb(123, 209, 84)'
+  firstClock.style.backgroundColor= 'rgb(123, 209, 84)'//green
 }
 
 function winSecond() {
@@ -201,7 +201,7 @@ function accurateTimer2(timer, max, repeatArgument, callbackArgument) {
 
         minutes = Math.floor(second_period / 600);
         seconds = Math.floor(second_period / 10) - minutes *60
-
+        
         if (minutes === 1 && seconds === 30) {
           colorSecond()
         }
@@ -219,6 +219,8 @@ function accurateTimer2(timer, max, repeatArgument, callbackArgument) {
               function test2(){});
             return
           }
+        
+        
 
       
         init(t - fix);
